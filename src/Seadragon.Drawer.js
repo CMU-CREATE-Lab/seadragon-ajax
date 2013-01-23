@@ -73,8 +73,8 @@ var SeadragonDrawer,
     // in general, <canvas> is great because it's standardized and stable for
     // the functionality we need. plus, firefox, opera and safari 4 all have
     // subpixel precision inside <canvas>. CSS transforms also seem to get us
-    // subpixel precision, and more broadly, across firefox, safari 4 and even
-    // chrome, but it's less stable so far. both <canvas> and CSS transform
+    // subpixel precision, and more broadly, across firefox, safari 4 and
+    // chrome. both <canvas> and CSS transform
     // have potential to be hardware accelerated, so deciding between the two
     // comes down to subpixel precision and perf based on experimentation.
     // note that IE provides proprietary matrix transforms which also get us
@@ -85,8 +85,7 @@ var SeadragonDrawer,
     // TODO investigate IE matrix transforms on canvas instead of per tile.
     // TEMP for now, turning off IE matrix transforms altogether.
     var badCanvas =     // due to no subpixel precision
-            (browser == SeadragonBrowser.SAFARI && browserVer < 4) ||
-            (browser == SeadragonBrowser.CHROME);
+            (browser == SeadragonBrowser.SAFARI && browserVer < 4)
     var useCanvas = hasCanvas && !badCanvas;
     var useCssTransforms = !useCanvas && hasCssTransforms;
     var useIeFilters = false;
