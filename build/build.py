@@ -10,6 +10,7 @@ if __name__ != "__main__":
 HEADER = '''
 /*!
  * Seadragon Ajax 0.8.9 (custom build from source)
+ * CREATE Lab fork: https://github.com/CMU-CREATE-Lab/seadragon-ajax
  * http://gallery.expression.microsoft.com/SeadragonAjax
  * This code is distributed under the license agreement at:
  * http://go.microsoft.com/fwlink/?LinkId=164943
@@ -42,6 +43,7 @@ SRC_FILES = [
 ]
 
 MIN_PATH = "seadragon-min.js"
+MAX_PATH = "seadragon.js"
 
 def readfile(path):
     file = open(path, 'r')
@@ -55,6 +57,9 @@ def writefile(path, contents):
     file.close()
 
 src_raw = '\n'.join([readfile(SRC_PATH + src_file) for src_file in SRC_FILES])
-src_min = HEADER.strip() + '\n' + jsmin(src_raw)
+src_header = HEADER.strip() + '\n'
+src_min = src_header + jsmin(src_raw)
+src_max = src_header + src_raw
 
 writefile(MIN_PATH, src_min)
+writefile(MAX_PATH, src_max)

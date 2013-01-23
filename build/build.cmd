@@ -1,13 +1,14 @@
 @echo off
 
-echo /*! > seadragon-min.js
-echo  * Seadragon Ajax 0.8.9 (custom build from source) >> seadragon-min.js
-echo  * http://gallery.expression.microsoft.com/SeadragonAjax >> seadragon-min.js
-echo  * This code is distributed under the license agreement at: >> seadragon-min.js
-echo  * http://go.microsoft.com/fwlink/?LinkId=164943 >> seadragon-min.js
-echo  */ >> seadragon-min.js
+echo /*! > seadragon-header.js
+echo  * Seadragon Ajax 0.8.9 (custom build from source) >> seadragon-header.js
+echo  * CREATE Lab fork: https://github.com/CMU-CREATE-Lab/seadragon-ajax >> seadragon-header.js
+echo  * http://gallery.expression.microsoft.com/SeadragonAjax >> seadragon-header.js
+echo  * This code is distributed under the license agreement at: >> seadragon-header.js
+echo  * http://go.microsoft.com/fwlink/?LinkId=164943 >> seadragon-header.js
+echo  */ >> seadragon-header.js
 
-type ..\src\_intro.txt > seadragon.js
+type ..\src\_intro.txt > seadragon-code.js
 
 for %%f in (
   Seadragon.Core.js
@@ -34,10 +35,17 @@ for %%f in (
   echo // %%f:
   echo.
   type ..\src\%%f
-) >> seadragon.js
+) >> seadragon-code.js
 
-type ..\src\_outro.txt >> seadragon.js
+type ..\src\_outro.txt >> seadragon-code.js
 
-ajaxmin.exe /Z /HC seadragon.js >> seadragon-min.js
+:: Create a non-minified version
+type seadragon-header.js > seadragon.js
+type seadragon-code.js >> seadragon.js
 
-del seadragon.js
+:: Create the minified version
+type seadragon-header.js > seadragon-min.js
+ajaxmin.exe /Z /HC seadragon-code.js >> seadragon-min.js
+
+del seadragon-header.js
+del seadragon-code.js
