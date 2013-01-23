@@ -1,7 +1,11 @@
 @echo off
 
+:: Got this from http://stackoverflow.com/a/203116
+for /F "usebackq tokens=1,2 delims==" %%i in (`wmic os get LocalDateTime /VALUE 2^>NUL`) do if '.%%i.'=='.LocalDateTime.' set ldt=%%j
+set ldt=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2% %ldt:~8,2%:%ldt:~10,2%:%ldt:~12,6%
+
 echo /*! > seadragon-header.js
-echo  * Seadragon Ajax 0.8.9 (custom build from source) >> seadragon-header.js
+echo  * Seadragon Ajax 0.8.9 (custom build from source on %ldt%) >> seadragon-header.js
 echo  * CREATE Lab fork: https://github.com/CMU-CREATE-Lab/seadragon-ajax >> seadragon-header.js
 echo  * http://gallery.expression.microsoft.com/SeadragonAjax >> seadragon-header.js
 echo  * This code is distributed under the license agreement at: >> seadragon-header.js
