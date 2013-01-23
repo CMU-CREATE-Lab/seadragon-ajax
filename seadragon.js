@@ -1,5 +1,5 @@
 /*! 
- * Seadragon Ajax 0.8.9 (custom build from source) 
+ * Seadragon Ajax 0.8.9 (custom build from source on 2013-01-23 17:05:40.978) 
  * CREATE Lab fork: https://github.com/CMU-CREATE-Lab/seadragon-ajax 
  * http://gallery.expression.microsoft.com/SeadragonAjax 
  * This code is distributed under the license agreement at: 
